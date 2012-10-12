@@ -105,7 +105,10 @@
                 options.unset ? delete result[field] : result[field] = val;
             } else {
                 //Create the child object if it doesn't exist, or isn't an object
-                if (typeof result[field] === 'undefined' || ! _.isObject(result[field])) {
+                // added check for options.unset: if unset is invoked on 'deep' attribute, do not create intermediate objects
+                // e.g. if unset a.b.c and a.b doesn't exist, don't create a.b 
+                // this may be invoked from deleteNested when applied to a changed properties, so not necessarily from user's code
+                if ((typeof result[field] === 'undefined' || ! _.isObject(result[field])) && !options.unset) {
                     result[field] = {};
                 }
 
