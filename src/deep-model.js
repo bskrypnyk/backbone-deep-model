@@ -288,7 +288,6 @@
     //Config; override in your app to customise
     DeepModel.keyPathSeparator = '.';
 
-
     //Exports
     Backbone.DeepModel = DeepModel;
 
