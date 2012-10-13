@@ -7,15 +7,9 @@
  *
  */
  
-;(function(factory) {
-    if (typeof define === 'function' && define.amd) {
-        // AMD
-        define(['underscore', 'backbone'], factory);
-    } else {
-        // globals
-        factory(_, Backbone);
-    }
-}(function(_, Backbone) {
+ /* bskrypnyk: forked */
+ 
+;(function() {
     
     /**
      * Takes a nested object and returns a shallow object keyed with the path names
@@ -253,6 +247,9 @@
           // Trigger change events for ancestors
           for (var path in ancestorPaths) {
             this.trigger('change:' + path + '*', this, this.get(path), options);
+            if( path.match( /\.$/ ) ) {
+	            deleteNested( this.changed, path.replace( /\.$/, '' ) );
+            }
           }
 
           this._changing = false;
@@ -297,4 +294,4 @@
     
     return Backbone;
     
-}));
+})();
