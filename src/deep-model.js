@@ -6,6 +6,7 @@
  *
  *
  */
+ 
 ;(function(factory) {
     if (typeof define === 'function' && define.amd) {
         // AMD
@@ -295,5 +296,5 @@
     if (typeof module != 'undefined') module.exports = DeepModel;
     
     return Backbone;
-
+    
 }));
